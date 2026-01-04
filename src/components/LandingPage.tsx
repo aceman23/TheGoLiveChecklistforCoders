@@ -23,7 +23,7 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
 
           <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
             A comprehensive, interactive go-live checklist covering SEO, legal compliance,
-            accessibility, and technical performance. Built for modern developers and AI coding agents.
+            accessibility, and technical performance. Built for developers, vibe coders, and AI coding agents.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -46,7 +46,7 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/50 shadow-lg">
             <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
               <Code2 className="w-6 h-6 text-blue-600" />
@@ -55,6 +55,16 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
             <p className="text-slate-600">
               Never forget critical launch tasks. Track progress with an intuitive interface
               and export reports for your team.
+            </p>
+          </div>
+
+          <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 border border-purple-200/50 shadow-lg">
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <Sparkles className="w-6 h-6 text-purple-600" />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">For Vibe Coders</h3>
+            <p className="text-slate-600">
+              Beautiful, intuitive interface that makes pre-launch checks enjoyable. Ship confidently with style and ease.
             </p>
           </div>
 
@@ -214,7 +224,7 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
         </div>
 
         <div className="mt-12 text-center text-sm text-slate-500">
-          <p>Open source • MIT License • Built for the dev community</p>
+          <p>Open source • MIT License • Built for developers and vibe coders</p>
         </div>
       </div>
     </div>

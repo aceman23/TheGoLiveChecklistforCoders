@@ -1,5 +1,5 @@
 # 🚀 The Go-Live Checklist
-> A comprehensive production-readiness guide for modern web development.
+> A comprehensive production-readiness guide for developers, vibe coders, and AI agents.
 
 This repository contains a standardized checklist to ensure that web projects are accessible, SEO-optimized, legally compliant, and technically sound before hitting production.
 
@@ -7,7 +7,7 @@ This repository contains a standardized checklist to ensure that web projects ar
 
 This project includes a professional, reusable **GoLiveChecklist** React component with:
 
-- **Landing Page**: Beautiful introduction page for developers and AI coding agents
+- **Landing Page**: Beautiful introduction page for developers, vibe coders, and AI coding agents
 - **Progress Tracking**: Visual progress bar showing completion percentage
 - **24 Essential Tasks**: Organized into 4 categories (SEO, Legal, Accessibility, Technical)
 - **Persistent State**: Automatically saves progress to localStorage
