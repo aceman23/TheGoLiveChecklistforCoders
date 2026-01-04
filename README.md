@@ -2,7 +2,7 @@
 
 https://aceman23-thegolive-check.bolt.host/
 
-> A comprehensive production-readiness guide for developers, vibe coders, and AI agents.
+> A comprehensive production-readiness guide for developers, vibe coders, and AI agents <
 
 This repository contains a standardized checklist to ensure that web projects are accessible, SEO-optimized, legally compliant, and technically sound before hitting production.
 
