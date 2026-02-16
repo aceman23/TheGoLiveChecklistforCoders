@@ -36,7 +36,7 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
               Launch Checklist
             </button>
             <a
-              href="https://github.com"
+              href="https://github.com/aceman23/TheGoLiveChecklistforCoders"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl border-2 border-slate-300 hover:border-slate-400 hover:shadow-md transition-all flex items-center justify-center gap-2"
