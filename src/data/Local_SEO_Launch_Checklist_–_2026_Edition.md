@@ -1,9 +1,13 @@
 # Local SEO Launch Checklist – 2026 Edition
 
+**Part of**: [The Go-Live Checklist for Coders](https://github.com/aceman23/TheGoLiveChecklistforCoders)
+
 Battle-tested rules for local/service-based businesses.
 Follow this when launching a new website or doing a serious refresh/redo.
 
 Do **all** of these consistently for **6 months** and your business visibility will be unrecognizable.
+
+**Interactive Version**: https://aceman23-thegolive-check.bolt.host/
 
 ## Website Structure & On-Page Essentials
 
