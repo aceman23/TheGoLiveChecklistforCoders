@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const STORAGE_KEY = 'go-live-checklist-state';
+const DEFAULT_STORAGE_KEY = 'go-live-checklist-state';
 
 export interface ChecklistState {
   completedTasks: Set<string>;
@@ -9,10 +9,10 @@ export interface ChecklistState {
   progress: number;
 }
 
-export const useChecklist = (totalTasks: number) => {
+export const useChecklist = (totalTasks: number, storageKey: string = DEFAULT_STORAGE_KEY) => {
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = localStorage.getItem(storageKey);
       if (stored) {
         const parsed = JSON.parse(stored);
         return new Set(parsed);
@@ -25,11 +25,11 @@ export const useChecklist = (totalTasks: number) => {
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(completedTasks)));
+      localStorage.setItem(storageKey, JSON.stringify(Array.from(completedTasks)));
     } catch (error) {
       console.error('Failed to save checklist state:', error);
     }
-  }, [completedTasks]);
+  }, [completedTasks, storageKey]);
 
   const toggleTask = useCallback((taskId: string) => {
     setCompletedTasks((prev) => {

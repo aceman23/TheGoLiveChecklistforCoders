@@ -2,9 +2,10 @@ import { Rocket, CheckCircle2, Sparkles, Code2, Bot, Users, Download, Shield, Za
 
 interface LandingPageProps {
   onGetStarted: () => void;
+  onLocalSEO: () => void;
 }
 
-export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
+export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
   return (
     <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -91,15 +92,82 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
           </div>
         </div>
 
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-slate-900 text-center mb-8">Choose Your Checklist</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-3xl p-8 border-2 border-blue-200/50 hover:border-blue-300 transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <Rocket className="w-8 h-8 text-blue-600" />
+                <h3 className="text-2xl font-bold text-slate-900">Go-Live Checklist</h3>
+              </div>
+              <p className="text-slate-700 mb-6">
+                Comprehensive production-readiness checklist covering SEO, legal compliance, accessibility, and technical performance. Perfect for any web application launch.
+              </p>
+              <ul className="space-y-2 mb-6 text-sm text-slate-600">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                  24 essential tasks across 4 categories
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                  SEO, legal, accessibility, technical
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                  For all web applications
+                </li>
+              </ul>
+              <button
+                onClick={onGetStarted}
+                className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-primary-600 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
+              >
+                <Rocket className="w-5 h-5" />
+                Launch This Checklist
+              </button>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 border-2 border-green-200/50 hover:border-green-300 transition-all">
+              <div className="flex items-center gap-3 mb-4">
+                <Sparkles className="w-8 h-8 text-green-600" />
+                <h3 className="text-2xl font-bold text-slate-900">Local SEO Checklist</h3>
+              </div>
+              <p className="text-slate-700 mb-6">
+                Battle-tested local SEO checklist for service-based businesses. Follow this consistently for 6 months and dominate your local market. 2026 Edition.
+              </p>
+              <ul className="space-y-2 mb-6 text-sm text-slate-600">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  24 local SEO tasks across 6 categories
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  GBP, citations, reviews, link building
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  For local service businesses
+                </li>
+              </ul>
+              <button
+                onClick={onLocalSEO}
+                className="w-full px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
+              >
+                <Sparkles className="w-5 h-5" />
+                Launch This Checklist
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-12 mb-16 text-white">
           <h2 className="text-3xl font-bold mb-6">What's Included</h2>
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="flex gap-4">
               <CheckCircle2 className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
               <div>
-                <h4 className="font-semibold mb-1">24 Essential Tasks</h4>
+                <h4 className="font-semibold mb-1">Two Powerful Checklists</h4>
                 <p className="text-slate-300 text-sm">
-                  Comprehensive coverage of SEO, legal, accessibility, and technical requirements
+                  Go-Live for general web apps and Local SEO for service-based businesses
                 </p>
               </div>
             </div>
