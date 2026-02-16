@@ -340,23 +340,21 @@ export const LocalSEOChecklist = () => {
                     return (
                       <div
                         key={task.id}
-                        className={`relative group p-4 rounded-xl border-2 transition-all ${
+                        onClick={() => toggleTask(task.id)}
+                        className={`relative group p-4 rounded-xl border-2 transition-all cursor-pointer ${
                           isChecked
                             ? 'bg-green-50/50 border-green-200 shadow-sm'
                             : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm'
                         }`}
                       >
                         <div className="flex items-start gap-3">
-                          <button
-                            onClick={() => toggleTask(task.id)}
-                            className="mt-0.5 hover:scale-110 transition-transform"
-                          >
+                          <div className="mt-0.5">
                             {isChecked ? (
                               <CheckCircle2 className="w-5 h-5 text-green-600" />
                             ) : (
                               <Circle className="w-5 h-5 text-slate-400" />
                             )}
-                          </button>
+                          </div>
                           <div className="flex-1 min-w-0">
                             <h3
                               className={`font-medium mb-1 ${
