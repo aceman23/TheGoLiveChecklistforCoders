@@ -24,9 +24,9 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
         </div>
 
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-600/20 border border-blue-300 dark:border-blue-500/30 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-600/20 border border-blue-200 dark:border-blue-500/30 rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Simple. Secure. Trusted.</span>
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Production-Ready Checklist</span>
           </div>
 
           <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
@@ -62,7 +62,7 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg">
             <div className="w-12 h-12 bg-blue-100 dark:bg-blue-600 rounded-lg flex items-center justify-center mb-4">
               <Code2 className="w-6 h-6 text-blue-600 dark:text-white" />
             </div>
@@ -73,7 +73,7 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
             </p>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-purple-200/50 dark:border-gray-700 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-purple-200/50 dark:border-gray-700 shadow-lg">
             <div className="w-12 h-12 bg-purple-100 dark:bg-purple-600 rounded-lg flex items-center justify-center mb-4">
               <Sparkles className="w-6 h-6 text-purple-600 dark:text-white" />
             </div>
@@ -83,7 +83,7 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
             </p>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-primary-200/50 dark:border-gray-700 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-primary-200/50 dark:border-gray-700 shadow-lg">
             <div className="w-12 h-12 bg-primary-100 dark:bg-blue-500 rounded-lg flex items-center justify-center mb-4">
               <Bot className="w-6 h-6 text-primary-600 dark:text-white" />
             </div>
@@ -93,7 +93,7 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
             </p>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg">
             <div className="w-12 h-12 bg-green-100 dark:bg-green-600 rounded-lg flex items-center justify-center mb-4">
               <Users className="w-6 h-6 text-green-600 dark:text-white" />
             </div>
@@ -235,28 +235,28 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-8">The Four Pillars</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg text-center">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg text-center">
               <div className="text-4xl mb-3">🔍</div>
               <h3 className="font-semibold text-slate-900 dark:text-white mb-2">SEO & Discoverability</h3>
               <p className="text-sm text-slate-600 dark:text-gray-400">
                 Meta tags, social previews, sitemaps, structured data, and canonical links
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg text-center">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg text-center">
               <div className="text-4xl mb-3">⚖️</div>
               <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Legal & Compliance</h3>
               <p className="text-sm text-slate-600 dark:text-gray-400">
                 Terms of service, privacy policies, cookie consent, and GDPR compliance
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg text-center">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg text-center">
               <div className="text-4xl mb-3">♿</div>
               <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Accessibility & UX</h3>
               <p className="text-sm text-slate-600 dark:text-gray-400">
                 WCAG compliance, ARIA labels, responsive design, and keyboard navigation
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg text-center">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200/50 dark:border-gray-700 shadow-lg text-center">
               <div className="text-4xl mb-3">🛠️</div>
               <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Technical Performance</h3>
               <p className="text-sm text-slate-600 dark:text-gray-400">
@@ -267,21 +267,21 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-blue-200/50 dark:border-gray-700 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-blue-200/50 dark:border-gray-700 shadow-lg">
             <Shield className="w-8 h-8 text-blue-600 dark:text-blue-500 mb-3" />
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Type-Safe</h3>
             <p className="text-sm text-slate-600 dark:text-gray-400">
               Built with TypeScript and strict type checking for reliability
             </p>
           </div>
-          <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-primary-200/50 dark:border-gray-700 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-primary-200/50 dark:border-gray-700 shadow-lg">
             <Zap className="w-8 h-8 text-primary-600 dark:text-blue-500 mb-3" />
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Modern Stack</h3>
             <p className="text-sm text-slate-600 dark:text-gray-400">
               React 19, Tailwind CSS, Lucide icons, and Vite for blazing fast performance
             </p>
           </div>
-          <div className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl p-6 border border-green-200/50 dark:border-gray-700 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-green-200/50 dark:border-gray-700 shadow-lg">
             <Download className="w-8 h-8 text-green-600 dark:text-green-500 mb-3" />
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Easy Integration</h3>
             <p className="text-sm text-slate-600 dark:text-gray-400">
