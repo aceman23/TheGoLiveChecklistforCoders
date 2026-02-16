@@ -7,6 +7,10 @@
 @layer base {
   body {
     font-family: 'Inter', sans-serif;
-    @apply bg-[#0A0C10] text-white min-h-screen;
+    @apply bg-white text-slate-900 min-h-screen;
+  }
+
+  .dark body {
+    @apply bg-[#0A0C10] text-white;
   }
 }

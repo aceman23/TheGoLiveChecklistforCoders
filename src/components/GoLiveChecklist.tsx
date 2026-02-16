@@ -11,11 +11,14 @@ import {
   Wrench,
   FileText,
   Copy,
-  Check
+  Check,
+  Sun,
+  Moon
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { checklistTasks, categoryLabels, type ChecklistTask } from '../data/checklistTasks';
 import { useChecklist } from '../hooks/useChecklist';
+import { useTheme } from '../contexts/ThemeContext';
 
 const categoryIcons = {
   seo: Search,
@@ -27,6 +30,7 @@ const categoryIcons = {
 export const GoLiveChecklist = () => {
   const { completedTasks, completedCount, progress, toggleTask, resetChecklist, isComplete } =
     useChecklist(checklistTasks.length);
+  const { theme, toggleTheme } = useTheme();
 
   const previousProgressRef = useRef(progress);
   const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
@@ -189,22 +193,29 @@ export const GoLiveChecklist = () => {
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="sticky top-4 z-10 mb-8 bg-gray-800 rounded-xl shadow-lg border border-gray-700 p-6">
+        <div className="sticky top-4 z-10 mb-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700 p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-blue-600 rounded-lg">
                 <Rocket className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">Go-Live Checklist</h1>
-                <p className="text-sm text-gray-400">Production readiness tracker</p>
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Go-Live Checklist</h1>
+                <p className="text-sm text-slate-600 dark:text-gray-400">Production readiness tracker</p>
               </div>
             </div>
 
             <div className="flex gap-2">
               <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 rounded-lg transition-colors"
+                title="Toggle theme"
+              >
+                {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+              <button
                 onClick={handleExportReport}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 rounded-lg transition-colors"
                 title="Export as Markdown"
               >
                 <Download className="w-4 h-4" />
@@ -212,7 +223,7 @@ export const GoLiveChecklist = () => {
               </button>
               <button
                 onClick={handleExportPDF}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 rounded-lg transition-colors"
                 title="Export as PDF"
               >
                 <FileText className="w-4 h-4" />
@@ -220,7 +231,7 @@ export const GoLiveChecklist = () => {
               </button>
               <button
                 onClick={resetChecklist}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 rounded-lg transition-colors"
                 title="Reset Checklist"
               >
                 <RotateCcw className="w-4 h-4" />
