@@ -11,11 +11,14 @@ import {
   Star,
   Link as LinkIcon,
   Copy,
-  Check
+  Check,
+  Sun,
+  Moon
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { localSeoTasks, localSeoCategoryLabels, type LocalSEOTask } from '../data/localSeoTasks';
 import { useChecklist } from '../hooks/useChecklist';
+import { useTheme } from '../contexts/ThemeContext';
 
 const categoryIcons = {
   website: Globe,
@@ -31,6 +34,7 @@ const STORAGE_KEY = 'local-seo-checklist';
 export const LocalSEOChecklist = () => {
   const { completedTasks, completedCount, progress, toggleTask, resetChecklist, isComplete } =
     useChecklist(localSeoTasks.length, STORAGE_KEY);
+  const { theme, toggleTheme } = useTheme();
 
   const previousProgressRef = useRef(progress);
   const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
@@ -220,15 +224,22 @@ export const LocalSEOChecklist = () => {
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">Local SEO Launch Checklist</h1>
-                <p className="text-sm text-gray-400">2026 Edition - Battle-tested for local businesses</p>
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Local SEO Launch Checklist</h1>
+                <p className="text-sm text-slate-600 dark:text-gray-400">2026 Edition - Battle-tested for local businesses</p>
               </div>
             </div>
 
             <div className="flex gap-2">
               <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 rounded-lg transition-colors"
+                title="Toggle theme"
+              >
+                {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+              <button
                 onClick={handleExportReport}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 rounded-lg transition-colors"
                 title="Export as Markdown"
               >
                 <Download className="w-4 h-4" />
@@ -236,7 +247,7 @@ export const LocalSEOChecklist = () => {
               </button>
               <button
                 onClick={handleExportPDF}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 rounded-lg transition-colors"
                 title="Export as PDF"
               >
                 <FileTextIcon className="w-4 h-4" />
@@ -244,7 +255,7 @@ export const LocalSEOChecklist = () => {
               </button>
               <button
                 onClick={resetChecklist}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 border border-slate-300 dark:border-gray-600 rounded-lg transition-colors"
                 title="Reset Checklist"
               >
                 <RotateCcw className="w-4 h-4" />
@@ -256,7 +267,7 @@ export const LocalSEOChecklist = () => {
           <div>
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gray-300">
+                <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
                   {completedCount} of {localSeoTasks.length} tasks completed
                 </span>
                 <span className="text-xs font-bold px-2 py-1 rounded-full bg-gray-700 text-gray-300 border border-gray-600">

@@ -243,10 +243,10 @@ export const GoLiveChecklist = () => {
           <div>
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gray-300">
+                <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
                   {completedCount} of {checklistTasks.length} tasks completed
                 </span>
-                <span className="text-xs font-bold px-2 py-1 rounded-full bg-gray-700 text-gray-300 border border-gray-600">
+                <span className="text-xs font-bold px-2 py-1 rounded-full bg-gradient-to-r from-slate-100 to-slate-200 dark:from-gray-700 dark:to-gray-700 text-slate-700 dark:text-gray-300 border border-slate-300 dark:border-gray-600">
                   {progress === 0 && '🚧 Sketchy'}
                   {progress > 0 && progress < 40 && '🔨 Getting Started'}
                   {progress >= 40 && progress < 70 && '⚡ Making Progress'}
@@ -254,17 +254,17 @@ export const GoLiveChecklist = () => {
                   {progress === 100 && '✨ Production Ready!'}
                 </span>
               </div>
-              <span className="text-sm font-bold text-blue-500">
+              <span className="text-sm font-bold text-primary-600 dark:text-blue-500">
                 {Math.round(progress)}%
               </span>
             </div>
-            <div className="relative h-4 bg-gray-700 rounded-full overflow-hidden shadow-inner">
+            <div className="relative h-4 bg-slate-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
               <div
                 className={`h-full transition-all duration-500 ease-out ${
                   progress === 100
                     ? 'bg-gradient-to-r from-green-500 via-emerald-500 to-green-600'
                     : progress >= 70
-                    ? 'bg-gradient-to-r from-blue-500 via-blue-500 to-blue-600'
+                    ? 'bg-gradient-to-r from-blue-500 via-primary-500 to-primary-600'
                     : progress >= 40
                     ? 'bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-500'
                     : 'bg-gradient-to-r from-red-400 via-red-500 to-rose-500'
@@ -272,15 +272,15 @@ export const GoLiveChecklist = () => {
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <div className="flex justify-between mt-1 text-xs text-gray-500">
+            <div className="flex justify-between mt-1 text-xs text-slate-500 dark:text-gray-500">
               <span>Sketchy</span>
               <span>Production Ready</span>
             </div>
           </div>
 
           {isComplete && (
-            <div className="mt-4 p-4 bg-green-900/30 border border-green-700 rounded-lg">
-              <p className="text-sm font-medium text-green-400 text-center">
+            <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg">
+              <p className="text-sm font-medium text-green-800 dark:text-green-400 text-center">
                 🎉 Congratulations! All tasks completed. You're ready to go live!
               </p>
             </div>
@@ -296,18 +296,18 @@ export const GoLiveChecklist = () => {
             return (
               <div
                 key={category}
-                className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 p-6"
+                className="bg-white/70 backdrop-blur-xl dark:bg-gray-800 rounded-2xl shadow-lg border border-slate-200/50 dark:border-gray-700 p-6"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-600 rounded-lg">
-                      <IconComponent className="w-5 h-5 text-white" />
+                    <div className="p-2 bg-primary-50 dark:bg-blue-600 rounded-lg">
+                      <IconComponent className="w-5 h-5 text-primary-600 dark:text-white" />
                     </div>
-                    <h2 className="text-xl font-semibold text-white">
+                    <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
                       {categoryLabels[category].title}
                     </h2>
                   </div>
-                  <span className="text-sm font-medium text-gray-400">
+                  <span className="text-sm font-medium text-slate-600 dark:text-gray-400">
                     {completedInCategory}/{tasks.length}
                   </span>
                 </div>
@@ -320,10 +320,10 @@ export const GoLiveChecklist = () => {
                     return (
                       <div
                         key={task.id}
-                        className={`relative group p-4 rounded-lg border transition-all ${
+                        className={`relative group p-4 rounded-xl border-2 transition-all ${
                           isChecked
-                            ? 'bg-blue-900/20 border-blue-700 shadow-sm'
-                            : 'bg-gray-700 border-gray-600 hover:border-gray-500 hover:shadow-sm'
+                            ? 'bg-primary-50/50 dark:bg-blue-900/20 border-primary-200 dark:border-blue-700 shadow-sm'
+                            : 'bg-white dark:bg-gray-700 border-slate-200 dark:border-gray-600 hover:border-slate-300 dark:hover:border-gray-500 hover:shadow-sm'
                         }`}
                       >
                         <div className="flex items-start gap-3">
@@ -332,22 +332,22 @@ export const GoLiveChecklist = () => {
                             className="mt-0.5 hover:scale-110 transition-transform"
                           >
                             {isChecked ? (
-                              <CheckCircle2 className="w-5 h-5 text-blue-500" />
+                              <CheckCircle2 className="w-5 h-5 text-primary-600 dark:text-blue-500" />
                             ) : (
-                              <Circle className="w-5 h-5 text-gray-400" />
+                              <Circle className="w-5 h-5 text-slate-400 dark:text-gray-400" />
                             )}
                           </button>
                           <div className="flex-1 min-w-0">
                             <h3
                               className={`font-medium mb-1 ${
-                                isChecked ? 'text-white' : 'text-gray-200'
+                                isChecked ? 'text-primary-900 dark:text-white' : 'text-slate-900 dark:text-gray-200'
                               }`}
                             >
                               {task.title}
                             </h3>
                             <p
                               className={`text-sm mb-2 ${
-                                isChecked ? 'text-gray-400' : 'text-gray-400'
+                                isChecked ? 'text-primary-700 dark:text-gray-400' : 'text-slate-600 dark:text-gray-400'
                               }`}
                             >
                               {task.description}
@@ -356,8 +356,8 @@ export const GoLiveChecklist = () => {
                               onClick={(e) => handleCopyPrompt(task.id, task.aiPrompt, e)}
                               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
                                 isCopied
-                                  ? 'bg-green-900/50 text-green-400 border border-green-700'
-                                  : 'bg-gray-600 text-gray-300 hover:bg-gray-500 border border-gray-500'
+                                  ? 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-400 border border-green-300 dark:border-green-700'
+                                  : 'bg-slate-100 dark:bg-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-200 dark:hover:bg-gray-500 border border-slate-300 dark:border-gray-500'
                               }`}
                               title="Copy AI Prompt"
                             >
@@ -384,7 +384,7 @@ export const GoLiveChecklist = () => {
           })}
         </div>
 
-        <div className="mt-8 text-center text-sm text-gray-500">
+        <div className="mt-8 text-center text-sm text-slate-500 dark:text-gray-500">
           <p>Built with React 19, TypeScript, and Tailwind CSS</p>
         </div>
       </div>
