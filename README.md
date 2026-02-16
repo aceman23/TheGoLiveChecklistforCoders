@@ -1,6 +1,6 @@
 # 🚀 The Go-Live Checklist for Coders 🚀
 
-**Live Demo**: https://aceman23-thegolive-check.bolt.host/
+**Live Demo**: https://thegolivechecklist.com/
 
 **GitHub**: https://github.com/aceman23/TheGoLiveChecklistforCoders
 
