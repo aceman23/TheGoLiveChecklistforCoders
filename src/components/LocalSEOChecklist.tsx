@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   CheckCircle2,
   Circle,
@@ -9,7 +9,9 @@ import {
   FileText as FileTextIcon,
   Clipboard,
   Star,
-  Link as LinkIcon
+  Link as LinkIcon,
+  Copy,
+  Check
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { localSeoTasks, localSeoCategoryLabels, type LocalSEOTask } from '../data/localSeoTasks';
@@ -31,6 +33,18 @@ export const LocalSEOChecklist = () => {
     useChecklist(localSeoTasks.length, STORAGE_KEY);
 
   const previousProgressRef = useRef(progress);
+  const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
+
+  const handleCopyPrompt = async (taskId: string, prompt: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopiedPrompt(taskId);
+      setTimeout(() => setCopiedPrompt(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
 
   useEffect(() => {
     if (isComplete && previousProgressRef.current < 100) {
@@ -321,25 +335,28 @@ export const LocalSEOChecklist = () => {
                 <div className="space-y-3">
                   {tasks.map((task) => {
                     const isChecked = completedTasks.has(task.id);
+                    const isCopied = copiedPrompt === task.id;
 
                     return (
-                      <button
+                      <div
                         key={task.id}
-                        onClick={() => toggleTask(task.id)}
-                        className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                        className={`relative group p-4 rounded-xl border-2 transition-all ${
                           isChecked
                             ? 'bg-green-50/50 border-green-200 shadow-sm'
                             : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm'
                         }`}
                       >
                         <div className="flex items-start gap-3">
-                          <div className="mt-0.5">
+                          <button
+                            onClick={() => toggleTask(task.id)}
+                            className="mt-0.5 hover:scale-110 transition-transform"
+                          >
                             {isChecked ? (
                               <CheckCircle2 className="w-5 h-5 text-green-600" />
                             ) : (
                               <Circle className="w-5 h-5 text-slate-400" />
                             )}
-                          </div>
+                          </button>
                           <div className="flex-1 min-w-0">
                             <h3
                               className={`font-medium mb-1 ${
@@ -349,15 +366,36 @@ export const LocalSEOChecklist = () => {
                               {task.title}
                             </h3>
                             <p
-                              className={`text-sm ${
+                              className={`text-sm mb-2 ${
                                 isChecked ? 'text-green-700' : 'text-slate-600'
                               }`}
                             >
                               {task.description}
                             </p>
+                            <button
+                              onClick={(e) => handleCopyPrompt(task.id, task.aiPrompt, e)}
+                              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
+                                isCopied
+                                  ? 'bg-green-100 text-green-700 border border-green-300'
+                                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300'
+                              }`}
+                              title="Copy AI Prompt"
+                            >
+                              {isCopied ? (
+                                <>
+                                  <Check className="w-3 h-3" />
+                                  <span>Copied!</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="w-3 h-3" />
+                                  <span>Copy AI Prompt</span>
+                                </>
+                              )}
+                            </button>
                           </div>
                         </div>
-                      </button>
+                      </div>
                     );
                   })}
                 </div>

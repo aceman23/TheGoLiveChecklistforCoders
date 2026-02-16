@@ -30,6 +30,7 @@ Battle-tested local SEO checklist for service-based businesses with 24 tasks acr
 
 ## 🎯 Features
 
+- **Copy-Paste AI Prompts**: Every checklist item includes a pre-written AI prompt you can copy and paste into Cursor, Claude, ChatGPT, or any AI coding assistant to fix that specific issue
 - **Beautiful Landing Page**: Introduction for developers, vibe coders, and AI coding agents
 - **Vibe Meter Progress Bar**: Visual status indicator from "Sketchy" to "Production Ready" with color-coded gradients
 - **Persistent State**: Automatically saves progress to localStorage - never lose your progress on refresh
@@ -184,6 +185,13 @@ import App from './App';
 ## 🎨 Key Features
 
 ### Productivity Power Tools
+
+- **AI Prompt Library**: Each checklist item has a "Copy AI Prompt" button with a pre-written, actionable prompt
+  - Copy and paste directly into Cursor, Claude, ChatGPT, or any AI coding assistant
+  - Prompts are specific, detailed, and immediately actionable
+  - No need to figure out how to ask your AI assistant - we've done it for you
+  - Visual feedback when copied (turns green with checkmark)
+  - Example: "Review my /api directory for missing authentication middleware and ensure all user-submitted data is validated using Zod."
 
 - **Vibe Meter**: Visual progress indicator that shows your production readiness status
   - Go-Live Checklist: Sketchy → Getting Started → Making Progress → Almost Ready → Production Ready

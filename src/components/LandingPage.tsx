@@ -69,14 +69,13 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
             </p>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/50 shadow-lg">
+          <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 border border-primary-200/50 shadow-lg">
             <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
               <Bot className="w-6 h-6 text-primary-600" />
             </div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-2">For AI Agents</h3>
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">Copy-Paste AI Prompts</h3>
             <p className="text-slate-600">
-              Structured, parseable checklist data. Perfect for AI coding assistants to
-              validate and ensure production readiness.
+              Every task includes a pre-written AI prompt. Just click "Copy AI Prompt" and paste into Cursor, Claude, or ChatGPT. No thinking required.
             </p>
           </div>
 
