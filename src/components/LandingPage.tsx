@@ -1,11 +1,12 @@
-import { Rocket, CheckCircle2, Sparkles, Code2, Bot, Users, Download, Shield, Zap, Github } from 'lucide-react';
+import { Rocket, CircleCheck as CheckCircle2, Sparkles, Code as Code2, Bot, Users, Download, Shield, Zap, Github, FileText } from 'lucide-react';
 
 interface LandingPageProps {
   onGetStarted: () => void;
   onLocalSEO: () => void;
+  onLlmsTxt: () => void;
 }
 
-export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
+export const LandingPage = ({ onGetStarted, onLocalSEO, onLlmsTxt }: LandingPageProps) => {
   return (
     <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -34,6 +35,13 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
             >
               <Rocket className="w-5 h-5" />
               Launch Checklist
+            </button>
+            <button
+              onClick={onLlmsTxt}
+              className="px-8 py-4 bg-slate-900 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
+            >
+              <Bot className="w-5 h-5" />
+              Generate llms.txt
             </button>
             <a
               href="https://github.com/aceman23/TheGoLiveChecklistforCoders"
@@ -92,8 +100,8 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
         </div>
 
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 text-center mb-8">Choose Your Checklist</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <h2 className="text-3xl font-bold text-slate-900 text-center mb-8">Choose Your Tool</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-3xl p-8 border-2 border-blue-200/50 hover:border-blue-300 transition-all">
               <div className="flex items-center gap-3 mb-4">
                 <Rocket className="w-8 h-8 text-blue-600" />
@@ -155,6 +163,40 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
                 Launch This Checklist
               </button>
             </div>
+
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-3xl p-8 border-2 border-slate-200/50 hover:border-blue-300 transition-all relative overflow-hidden">
+              <div className="absolute top-3 right-3 px-2.5 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">
+                NEW
+              </div>
+              <div className="flex items-center gap-3 mb-4">
+                <Bot className="w-8 h-8 text-blue-600" />
+                <h3 className="text-2xl font-bold text-slate-900">llms.txt Generator</h3>
+              </div>
+              <p className="text-slate-700 mb-6">
+                Make your project discoverable by ChatGPT, Claude, Perplexity, and every AI tool that reads the llms.txt standard. One click, instant download.
+              </p>
+              <ul className="space-y-2 mb-6 text-sm text-slate-600">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                  Auto-filled from your checklist progress
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                  Edit before download
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                  llms.txt + llms-full.txt versions
+                </li>
+              </ul>
+              <button
+                onClick={onLlmsTxt}
+                className="w-full px-6 py-3 bg-gradient-to-r from-slate-700 to-blue-700 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
+              >
+                <FileText className="w-5 h-5" />
+                Generate My llms.txt
+              </button>
+            </div>
           </div>
         </div>
 
@@ -212,6 +254,15 @@ export const LandingPage = ({ onGetStarted, onLocalSEO }: LandingPageProps) => {
                 <h4 className="font-semibold mb-1">Fully Responsive</h4>
                 <p className="text-slate-300 text-sm">
                   Works beautifully on mobile, tablet, and desktop devices
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <CheckCircle2 className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold mb-1">llms.txt Generator</h4>
+                <p className="text-slate-300 text-sm">
+                  One-click AI discoverability file based on your checklist progress
                 </p>
               </div>
             </div>

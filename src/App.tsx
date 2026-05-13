@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { LandingPage } from './components/LandingPage';
 import { GoLiveChecklist } from './components/GoLiveChecklist';
 import { LocalSEOChecklist } from './components/LocalSEOChecklist';
+import { LlmsTxtGenerator } from './components/LlmsTxtGenerator';
 import { ArrowLeft } from 'lucide-react';
 
-type View = 'landing' | 'go-live' | 'local-seo';
+type View = 'landing' | 'go-live' | 'local-seo' | 'llms-txt';
 
 function App() {
   const [currentView, setCurrentView] = useState<View>('landing');
@@ -14,6 +15,7 @@ function App() {
       <LandingPage
         onGetStarted={() => setCurrentView('go-live')}
         onLocalSEO={() => setCurrentView('local-seo')}
+        onLlmsTxt={() => setCurrentView('llms-txt')}
       />
     );
   }
@@ -29,6 +31,7 @@ function App() {
       </button>
       {currentView === 'go-live' && <GoLiveChecklist />}
       {currentView === 'local-seo' && <LocalSEOChecklist />}
+      {currentView === 'llms-txt' && <LlmsTxtGenerator />}
     </div>
   );
 }
