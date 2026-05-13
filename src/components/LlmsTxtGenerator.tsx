@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bot, Download, Eye, CreditCard as Edit3, Copy, Check, ChevronDown, ChevronUp, Sparkles, Globe, FileText, Info } from 'lucide-react';
+import { Bot, Download, Eye, Edit3, Copy, Check, ChevronDown, ChevronUp, Sparkles, Globe, FileText, Info, Loader2, Wand2 } from 'lucide-react';
 import { checklistTasks, categoryLabels } from '../data/checklistTasks';
 import { localSeoTasks, localSeoCategoryLabels } from '../data/localSeoTasks';
 import { useChecklist } from '../hooks/useChecklist';
@@ -134,6 +134,44 @@ export const LlmsTxtGenerator = () => {
   const [fullVersion, setFullVersion] = useState(false);
   const [copied, setCopied] = useState(false);
   const [metaOpen, setMetaOpen] = useState(true);
+  const [autofilling, setAutofilling] = useState(false);
+  const [autofillError, setAutofillError] = useState<string | null>(null);
+
+  const handleAutofill = async () => {
+    if (!meta.siteUrl) return;
+    setAutofilling(true);
+    setAutofillError(null);
+    try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+      const res = await fetch(`${supabaseUrl}/functions/v1/extract-site-metadata`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: meta.siteUrl }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAutofillError(data.error ?? 'Failed to extract site metadata.');
+        return;
+      }
+      setMeta((m) => ({
+        ...m,
+        siteName: data.siteName || m.siteName,
+        description: data.description || m.description,
+        primaryTopic: data.primaryTopic || m.primaryTopic,
+        targetAudience: data.targetAudience || m.targetAudience,
+        author: data.author || m.author,
+      }));
+      setEditedContent(null);
+    } catch (_e) {
+      setAutofillError('Network error. Please try again.');
+    } finally {
+      setAutofilling(false);
+    }
+  };
 
   const generated = generateLlmsTxt(meta, goLiveCompleted, seoCompleted, fullVersion);
   const [editedContent, setEditedContent] = useState<string | null>(null);
@@ -286,7 +324,42 @@ export const LlmsTxtGenerator = () => {
                 <div className="px-5 pb-5 space-y-3 border-t border-slate-100">
                   <div className="pt-3" />
                   {metaField('siteName', 'Site / Project Name', 'e.g. Acme Launchpad')}
-                  {metaField('siteUrl', 'URL', 'e.g. https://acmelaunch.com')}
+
+                  {/* URL field with AI autofill button */}
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">URL</label>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={meta.siteUrl}
+                        onChange={(e) => setMeta((m) => ({ ...m, siteUrl: e.target.value }))}
+                        placeholder="e.g. https://acmelaunch.com"
+                        className="flex-1 px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400"
+                      />
+                      <button
+                        onClick={handleAutofill}
+                        disabled={!meta.siteUrl || autofilling}
+                        title="Auto-fill fields using AI"
+                        className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg border transition-all disabled:opacity-40 disabled:cursor-not-allowed bg-blue-600 text-white border-blue-600 hover:bg-blue-700 whitespace-nowrap"
+                      >
+                        {autofilling ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Wand2 className="w-4 h-4" />
+                        )}
+                        {autofilling ? 'Scanning...' : 'AI Fill'}
+                      </button>
+                    </div>
+                    {autofillError && (
+                      <p className="mt-1.5 text-xs text-red-600">{autofillError}</p>
+                    )}
+                    {!autofillError && (
+                      <p className="mt-1 text-xs text-slate-500">
+                        Enter your URL then click <strong>AI Fill</strong> to auto-populate all fields.
+                      </p>
+                    )}
+                  </div>
+
                   {metaField(
                     'description',
                     'One-line description',
@@ -464,3 +537,6 @@ export const LlmsTxtGenerator = () => {
     </div>
   );
 };
+
+
+export { LlmsTxtGenerator }
