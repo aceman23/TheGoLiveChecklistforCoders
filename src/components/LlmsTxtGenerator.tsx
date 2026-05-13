@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bot, Download, Eye, Edit3, Copy, Check, ChevronDown, ChevronUp, Sparkles, Globe, FileText, Info, Loader2, Wand2 } from 'lucide-react';
+import { Bot, Download, Eye, CreditCard as Edit3, Copy, Check, ChevronDown, ChevronUp, Sparkles, Globe, FileText, Info, Loader as Loader2, Wand as Wand2 } from 'lucide-react';
 import { checklistTasks, categoryLabels } from '../data/checklistTasks';
 import { localSeoTasks, localSeoCategoryLabels } from '../data/localSeoTasks';
 import { useChecklist } from '../hooks/useChecklist';
@@ -537,6 +537,3 @@ export const LlmsTxtGenerator = () => {
     </div>
   );
 };
-
-
-export { LlmsTxtGenerator }
