@@ -343,6 +343,17 @@ export const LandingPage = ({ onGetStarted, onLocalSEO, onLlmsTxt }: LandingPage
 
         <div className="mt-12 text-center text-sm text-slate-500">
           <p>Open source • MIT License • Built for developers and vibe coders</p>
+          <p className="mt-1">
+            Built by{' '}
+            <a
+              href="https://hybridads.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600 transition-colors"
+            >
+              HybridAds.ai
+            </a>
+          </p>
         </div>
       </div>
     </div>

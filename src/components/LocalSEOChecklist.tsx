@@ -1,18 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  CheckCircle2,
-  Circle,
-  Download,
-  RotateCcw,
-  MapPin,
-  Globe,
-  FileText as FileTextIcon,
-  Clipboard,
-  Star,
-  Link as LinkIcon,
-  Copy,
-  Check
-} from 'lucide-react';
+import { CircleCheck as CheckCircle2, Circle, Download, RotateCcw, MapPin, Globe, FileText as FileTextIcon, Clipboard, Star, Link as LinkIcon, Copy, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { localSeoTasks, localSeoCategoryLabels, type LocalSEOTask } from '../data/localSeoTasks';
 import { useChecklist } from '../hooks/useChecklist';
@@ -404,6 +391,17 @@ export const LocalSEOChecklist = () => {
 
         <div className="mt-8 text-center text-sm text-slate-500">
           <p>Built for local service businesses who want to dominate their market</p>
+          <p className="mt-1">
+            Built by{' '}
+            <a
+              href="https://hybridads.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600 transition-colors"
+            >
+              HybridAds.ai
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -1,18 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  CheckCircle2,
-  Circle,
-  Download,
-  RotateCcw,
-  Rocket,
-  Search,
-  Scale,
-  Accessibility,
-  Wrench,
-  FileText,
-  Copy,
-  Check
-} from 'lucide-react';
+import { CircleCheck as CheckCircle2, Circle, Download, RotateCcw, Rocket, Search, Scale, Accessibility, Wrench, FileText, Copy, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { checklistTasks, categoryLabels, type ChecklistTask } from '../data/checklistTasks';
 import { useChecklist } from '../hooks/useChecklist';
@@ -373,6 +360,17 @@ export const GoLiveChecklist = () => {
 
         <div className="mt-8 text-center text-sm text-slate-500">
           <p>Built with React 19, TypeScript, and Tailwind CSS</p>
+          <p className="mt-1">
+            Built by{' '}
+            <a
+              href="https://hybridads.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600 transition-colors"
+            >
+              HybridAds.ai
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -446,6 +446,20 @@ export const LlmsTxtGenerator = () => {
           </div>
         </div>
 
+        <div className="mt-6 text-center text-sm text-slate-500">
+          <p>
+            Built by{' '}
+            <a
+              href="https://hybridads.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600 transition-colors"
+            >
+              HybridAds.ai
+            </a>
+          </p>
+        </div>
+
       </div>
     </div>
   );
