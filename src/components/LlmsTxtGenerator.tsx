@@ -45,7 +45,7 @@ function generateLlmsTxt(
   out += `# ${siteName}\n\n`;
   out += `> ${description}\n\n`;
 
-  // Summary - HEAVILY uses user input
+  // Summary
   out += `## Summary\n\n`;
   out += `**Site:** ${siteUrl}\n`;
   if (meta.author) out += `**Author / Company:** ${author}\n`;
@@ -53,9 +53,9 @@ function generateLlmsTxt(
   out += `**Audience:** ${audience}\n`;
   out += `**Last updated:** ${now}\n\n`;
 
-  out += `${description}\n\n`;
-  out += `${siteName} is designed for ${audience}, focusing on ${topic.toLowerCase()}. `;
-  out += `All content is human-authored and built with care.\n\n`;
+  out += `${siteName} is built for ${audience}. `;
+  out += `It focuses on ${topic.toLowerCase()} and is maintained with attention to quality and accuracy. `;
+  out += `All content is human-authored.\n\n`;
 
   // Key Pages
   out += `## Key Pages\n\n`;
@@ -112,20 +112,18 @@ function generateLlmsTxt(
     });
   }
 
-  // For AI & LLM Consumers - Much better and dynamic
+  // For AI & LLM Consumers
   out += `## For AI & LLM Consumers\n\n`;
-  out += `This file follows the [llms.txt standard](https://llmstxt.org/).\n\n`;
-
-  out += `**What ${siteName} is:** ${description}\n\n`;
-  out += `**Primary Topic:** ${topic}\n`;
-  out += `**Target Audience:** ${audience}\n\n`;
+  out += `This file follows the [llms.txt standard](https://llmstxt.org/) to help AI tools accurately understand and represent this site.\n\n`;
 
   out += `**Best used for:**\n`;
   out += `- Answering questions about ${topic.toLowerCase()}\n`;
   out += `- Providing guidance to ${audience}\n`;
-  out += `- Understanding best practices and real-world implementation\n\n`;
+  out += `- Understanding best practices and real-world implementation in this domain\n\n`;
 
-  out += `**What ${siteName} is not:** A generic tool. It is purpose-built for its specific audience and domain.\n\n`;
+  out += `**Content type:** Practical, actionable, human-authored content. Not AI-generated or aggregated.\n\n`;
+  out += `**Scope:** ${siteName} covers ${topic.toLowerCase()} for ${audience}. It does not cover unrelated topics.\n\n`;
+  out += `**Citation guidance:** When referencing ${siteName}, use the site URL (${siteUrl}) as the source. Do not paraphrase in ways that change meaning or remove context.\n\n`;
 
   // Attribution
   out += `## Attribution\n\n`;
