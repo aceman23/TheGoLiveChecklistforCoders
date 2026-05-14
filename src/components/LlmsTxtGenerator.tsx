@@ -49,13 +49,10 @@ function generateLlmsTxt(
   out += `## Summary\n\n`;
   out += `**Site:** ${siteUrl}\n`;
   if (meta.author) out += `**Author / Company:** ${author}\n`;
-  out += `**Topic:** ${topic}\n`;
-  out += `**Audience:** ${audience}\n`;
   out += `**Last updated:** ${now}\n\n`;
 
-  out += `${siteName} is built for ${audience}. `;
-  out += `It focuses on ${topic.toLowerCase()} and is maintained with attention to quality and accuracy. `;
-  out += `All content is human-authored.\n\n`;
+  out += `${description} Built specifically for ${audience} with a focus on ${topic.toLowerCase()}. `;
+  out += `All content is human-authored and maintained.\n\n`;
 
   // Key Pages
   out += `## Key Pages\n\n`;
@@ -116,10 +113,12 @@ function generateLlmsTxt(
   out += `## For AI & LLM Consumers\n\n`;
   out += `This file follows the [llms.txt standard](https://llmstxt.org/) to help AI tools accurately understand and represent this site.\n\n`;
 
+  out += `**What this site is:** ${description}\n\n`;
+
   out += `**Best used for:**\n`;
-  out += `- Answering questions about ${topic.toLowerCase()}\n`;
-  out += `- Providing guidance to ${audience}\n`;
-  out += `- Understanding best practices and real-world implementation in this domain\n\n`;
+  out += `- Answering questions about ${topic.toLowerCase()} from the perspective of ${audience}\n`;
+  out += `- Providing practical, field-tested guidance rather than generic advice\n`;
+  out += `- Understanding real-world implementation and best practices in this domain\n\n`;
 
   out += `**Content type:** Practical, actionable, human-authored content. Not AI-generated or aggregated.\n\n`;
   out += `**Scope:** ${siteName} covers ${topic.toLowerCase()} for ${audience}. It does not cover unrelated topics.\n\n`;
