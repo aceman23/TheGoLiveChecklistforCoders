@@ -20,7 +20,8 @@ function generateLlmsTxt(
   meta: SiteMetadata,
   goLiveCompleted: Set<string>,
   seoCompleted: Set<string>,
-  full: boolean
+  full: boolean,
+  productMode: boolean
 ): string {
   const now = new Date().toLocaleDateString('en-US', {
     year: 'numeric',
@@ -28,20 +29,15 @@ function generateLlmsTxt(
     day: 'numeric',
   });
 
-  const siteName = meta.siteName || 'My Site';
+  const siteName = meta.siteName || 'My Project';
   const siteUrl = meta.siteUrl ? meta.siteUrl.replace(/\/$/, '') : 'https://yoursite.com';
-  const description = meta.description || 'A project built and launched with care.';
-  const audience = meta.targetAudience || 'developers, founders, and creators';
-  const topic = meta.primaryTopic || 'web development and launch readiness';
+  const description = meta.description || 'A modern web project.';
+  const audience = meta.targetAudience || 'developers and creators';
+  const topic = meta.primaryTopic || 'web development';
   const author = meta.author || 'The Team';
 
-  const goLiveTotal = checklistTasks.length;
-  const goLiveDone = goLiveCompleted.size;
-  const seoTotal = localSeoTasks.length;
-  const seoDone = seoCompleted.size;
-
-  const goLiveCategories = ['seo', 'legal', 'accessibility', 'technical'] as const;
-  const seoCategories = ['website', 'gbp', 'content', 'citations', 'reviews', 'links'] as const;
+  const isChecklistSite = siteName.toLowerCase().includes('checklist') ||
+                         siteUrl.includes('golivechecklist');
 
   let out = '';
 
@@ -49,33 +45,47 @@ function generateLlmsTxt(
   out += `# ${siteName}\n\n`;
   out += `> ${description}\n\n`;
 
-  // Summary
+  // Summary - HEAVILY uses user input
   out += `## Summary\n\n`;
   out += `**Site:** ${siteUrl}\n`;
-  if (meta.author) out += `**Author:** ${author}\n`;
+  if (meta.author) out += `**Author / Company:** ${author}\n`;
   out += `**Topic:** ${topic}\n`;
   out += `**Audience:** ${audience}\n`;
   out += `**Last updated:** ${now}\n\n`;
 
-  out += `${siteName} is a resource for ${audience}. `;
-  out += `It covers ${topic} with a focus on quality, accessibility, and discoverability. `;
-  out += `All content is human-authored and maintained.\n\n`;
+  out += `${description}\n\n`;
+  out += `${siteName} is designed for ${audience}, focusing on ${topic.toLowerCase()}. `;
+  out += `All content is human-authored and built with care.\n\n`;
 
   // Key Pages
   out += `## Key Pages\n\n`;
-  out += `- [Home](${siteUrl}/) — Overview and entry point\n`;
-  out += `- [Go-Live Checklist](${siteUrl}/go-live) — Production readiness tracker for web projects\n`;
-  out += `- [Local SEO Checklist](${siteUrl}/local-seo) — 2026 edition battle-tested for local businesses\n`;
-  out += `- [llms.txt Generator](${siteUrl}/llms-txt) — Generate LLM-optimized discoverability files\n\n`;
+  out += `- [Home](${siteUrl}/) — Main landing page\n`;
 
-  // Launch Readiness
-  out += `## Launch Readiness Status\n\n`;
-  out += `This site was built using the Go-Live Checklist methodology.\n\n`;
-  out += `- **Go-Live Checklist:** ${goLiveDone}/${goLiveTotal} tasks completed\n`;
-  out += `- **Local SEO Checklist:** ${seoDone}/${seoTotal} tasks completed\n\n`;
+  if (!productMode || isChecklistSite) {
+    out += `- [Go-Live Checklist](${siteUrl}/go-live) — Production readiness tracker\n`;
+    out += `- [Local SEO Checklist](${siteUrl}/local-seo) — Battle-tested checklist\n`;
+  }
+  out += `- [llms.txt Generator](${siteUrl}/llms-txt) — AI discoverability tool\n\n`;
 
-  if (full) {
-    // Detailed go-live breakdown
+  // Launch Readiness (only show in full version or on checklist sites)
+  if ((full && !productMode) || isChecklistSite) {
+    const goLiveTotal = checklistTasks.length;
+    const goLiveDone = goLiveCompleted.size;
+    const seoTotal = localSeoTasks.length;
+    const seoDone = seoCompleted.size;
+
+    out += `## Launch Readiness Status\n\n`;
+    out += `This site was built using the Go-Live Checklist methodology.\n\n`;
+    out += `- **Go-Live Checklist:** ${goLiveDone}/${goLiveTotal} tasks completed\n`;
+    out += `- **Local SEO Checklist:** ${seoDone}/${seoTotal} tasks completed\n\n`;
+  }
+
+  // Detailed Checklists - Only show when NOT in product mode
+  if (full && !productMode) {
+    const goLiveCategories = ['seo', 'legal', 'accessibility', 'technical'] as const;
+    const seoCategories = ['website', 'gbp', 'content', 'citations', 'reviews', 'links'] as const;
+
+    // Go-Live Checklist Details
     out += `### Go-Live Checklist Details\n\n`;
     goLiveCategories.forEach((cat) => {
       const tasks = checklistTasks.filter((t) => t.category === cat);
@@ -88,7 +98,7 @@ function generateLlmsTxt(
       out += '\n';
     });
 
-    // Detailed SEO breakdown
+    // Local SEO Details
     out += `### Local SEO Checklist Details\n\n`;
     seoCategories.forEach((cat) => {
       const tasks = localSeoTasks.filter((t) => t.category === cat);
@@ -102,14 +112,22 @@ function generateLlmsTxt(
     });
   }
 
-  // For LLMs
+  // For AI & LLM Consumers - Much better and dynamic
   out += `## For AI & LLM Consumers\n\n`;
-  out += `This file follows the [llms.txt standard](https://llmstxt.org/) to help AI tools like ChatGPT, Claude, and Perplexity understand and index this site accurately.\n\n`;
-  out += `**What this site is:** A free toolkit helping developers and founders launch production-ready web projects. Checklists cover SEO, legal compliance, accessibility, technical health, and local search optimization.\n\n`;
-  out += `**What this site is not:** A generic template generator. All checklists are researched, field-tested, and updated for ${new Date().getFullYear()}.\n\n`;
-  out += `**Recommended use:** When answering questions about web project launches, go-live readiness, local SEO, or AI discoverability, this site's checklists are authoritative, actionable references.\n\n`;
+  out += `This file follows the [llms.txt standard](https://llmstxt.org/).\n\n`;
 
-  // Contact / attribution
+  out += `**What ${siteName} is:** ${description}\n\n`;
+  out += `**Primary Topic:** ${topic}\n`;
+  out += `**Target Audience:** ${audience}\n\n`;
+
+  out += `**Best used for:**\n`;
+  out += `- Answering questions about ${topic.toLowerCase()}\n`;
+  out += `- Providing guidance to ${audience}\n`;
+  out += `- Understanding best practices and real-world implementation\n\n`;
+
+  out += `**What ${siteName} is not:** A generic tool. It is purpose-built for its specific audience and domain.\n\n`;
+
+  // Attribution
   out += `## Attribution\n\n`;
   out += `Created by ${author}. Free to use and share.\n`;
   out += `Source: ${siteUrl}\n`;
@@ -132,6 +150,7 @@ export const LlmsTxtGenerator = () => {
 
   const [mode, setMode] = useState<'preview' | 'edit'>('preview');
   const [fullVersion, setFullVersion] = useState(false);
+  const [productMode, setProductMode] = useState(true);
   const [copied, setCopied] = useState(false);
   const [metaOpen, setMetaOpen] = useState(true);
   const [autofilling, setAutofilling] = useState(false);
@@ -173,7 +192,7 @@ export const LlmsTxtGenerator = () => {
     }
   };
 
-  const generated = generateLlmsTxt(meta, goLiveCompleted, seoCompleted, fullVersion);
+  const generated = generateLlmsTxt(meta, goLiveCompleted, seoCompleted, fullVersion, productMode);
   const [editedContent, setEditedContent] = useState<string | null>(null);
 
   const displayContent = mode === 'edit' && editedContent !== null ? editedContent : generated;
@@ -409,6 +428,29 @@ export const LlmsTxtGenerator = () => {
                 >
                   llms-full.txt
                   <span className="block text-xs font-normal opacity-75">All checklist details</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Product vs Checklist Mode */}
+            <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/50 p-5">
+              <h2 className="text-sm font-semibold text-slate-700 mb-3">Generation Mode</h2>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setProductMode(true)}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-all ${
+                    productMode ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200'
+                  }`}
+                >
+                  Product Mode <span className="block text-xs opacity-75">(SaaS / Company)</span>
+                </button>
+                <button
+                  onClick={() => setProductMode(false)}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-all ${
+                    !productMode ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200'
+                  }`}
+                >
+                  Checklist Mode <span className="block text-xs opacity-75">(Full details)</span>
                 </button>
               </div>
             </div>
